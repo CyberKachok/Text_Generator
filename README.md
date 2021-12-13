@@ -1,5 +1,5 @@
 # Text_Generator
-Program that can predict the next word in a pseudo-sentence based on the previous words in the sequence and the data that is used to create a statistical model
+A program that can predict the next word in a pseudo-sentence based on the previous words in the sequence and the data that is used to create a statistical model
 1. Open and read the corpus from the provided file corpus.txt. The filename should be specified as user input. Note that the file is written in UTF-8 encoding, and the file should be in the same folder as your Python script.
 2. Make a list of trigrams. It should consist of heads and tails, but heads should consist of two space-separated tokens concatenated into a single string. The tails should consist of one token. For example: head — winter is, tail — coming. The model should be trained based on the list of trigrams.
 3. Choose a random head from the corpus that will serve as the first word of the chain
