@@ -5,7 +5,7 @@ file = open("corpus.txt", "r", encoding="utf-8")
 text = file.read()
 file.close()
 # Break the corpus into individual words
-tokens_list = nltk.WhitespaceTokenizer().tokenize(text)
+tokens_list = nltk.WhitespaceTokenizer().tokenize(text.replace('"', "^").replace("'", "^"))
 trigram = list(nltk.ngrams(tokens_list, 3))
 # Make trigram dict of heads and tails with counting
 freq_dict = {}
@@ -14,7 +14,7 @@ for head, body, tail in trigram:
     freq_dict[head + " " + body + " "].setdefault(tail, 0)
     freq_dict[head + " " + body + " "][tail] += 1
 # Make a list of 'heads' that start with capitalized words
-uppercase_list = re.findall(r"[A-Z]+[a-z]*['-]*[A-Za-z]*\s\w+\s", str(freq_dict.keys()))[:-1]
+uppercase_list = re.findall(r"""[\^]*[\[]*[A-Z]+[a-z]*['-]*[A-Za-z]*\s\w+[\]]*\s""", str(freq_dict.keys()))[:-1]
 
 
 # add tail to string and create new head
@@ -41,4 +41,4 @@ for i in range(10):
             if re.search(r"[.!?]", head[-2]) is not None:
                 stop_the_loop = True
             byte_the_tail()
-    print(string)
+    print(string.replace('^', "'"))
